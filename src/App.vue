@@ -2,6 +2,42 @@
 <script setup>
 import { ref } from "vue" // you need this to use ref()
 
+let text = ref("Fact # 01: Cows moo.")
+
+
+// create a function that plays the sound of a cow mooing
+function playSound() {
+    let audio = new Audio("/moo.mp3")
+    audio.play()
+}
+
+function doSomething() {
+
+    // create a paragraph element
+    let p = document.createElement("p")
+
+    // fill that p element with some text
+    let inputText = input.value
+    p.innerHTML += inputText
+    console.log(inputText)
+
+    // append that element to main
+    main.appendChild(p)
+
+}
+
+
+function Refresh() {
+    // delete all the p elements
+    let p = document.querySelectorAll("p")
+    for (let i = 0; i < p.length; i++) {
+        p[i].remove()
+    }
+    
+}
+
+
+
 
 </script>
 
@@ -19,8 +55,15 @@ import { ref } from "vue" // you need this to use ref()
     </div>
 
     <div id="flex">
-        <div id="sidebar" class="container"> Sidebar </div>
-        <div id="main" class="container"> Text input </div>
+        <div id="sidebar" class="container">
+            <input type="text" id="input" placeholder="Enter text here"> 
+            <button @click="doSomething">Add</button>
+            <button @click="Refresh">Refresh</button>
+
+
+
+        </div>
+        <div id="main" class="container"> {{text}} </div>
     </div>
 
 
@@ -52,6 +95,27 @@ img{
 
     height: 100%;
     width: auto;
+
+}
+
+button{
+
+    font-size: 20px;
+    background-color: rgb(8, 33, 5);
+    color: white;
+    border-radius: 1px;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: italic;
+    font-weight: bold;
+    /* change color when hovering with mouse pointer */
+    &:hover{
+        background-color: rgb(235, 233, 213);
+        color: rgb(235, 233, 213);
+    }
 
 }
 
